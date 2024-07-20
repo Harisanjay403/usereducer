@@ -1,4 +1,3 @@
-
 import { useReducer } from "react";
 
 
@@ -13,6 +12,7 @@ function reducer(state,action){
 
         case "DELETE_TASK":
             return state.filter((task) => task.id !== action.payload)
+        
         default:
             return state;
     }
@@ -29,7 +29,9 @@ function reducer(state,action){
     const handleDelete=(id)=>{
         dispatch({type:"DELETE_TASK", payload:id})
     }
-    
+    const handleUpdate = (itemName) =>{
+        dispatch({type:"UPDATE_TASK", payload:itemName})
+    }
   return (
       <>
           <h2>Task List{todos.length}</h2>
@@ -39,7 +41,9 @@ function reducer(state,action){
               {
                   todos.map(todo=>(
                       <li key={todo.id}>{todo.name}
-                      <button onClick={()=>handleDelete(todo.id)}>Delete</button>
+                                      <button onClick={()=>handleDelete(todo.id)}
+                          >Delete</button>
+                          
                       </li>
                   ))
               }
